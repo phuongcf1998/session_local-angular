@@ -1,0 +1,128 @@
+<p-button styleClass="p-button-link" [routerLink]="['/']" label="Back Home">
+</p-button>
+
+<br />
+<br />
+<div class="grid">
+  <div class="col-4 flex flex-column  align-items-center">
+    <img
+      class="user-avatar"
+      src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+      alt=""
+    />
+    <br />
+
+    <div>
+      <span class="name" *ngIf="user"
+        >{{ user.firstName }} {{ user.lastName }}</span
+      >
+    </div>
+  </div>
+  <div class="col-8">
+    <h1 class="">My Profile</h1>
+    <hr />
+    <br />
+
+    <form
+      class="card mr-4"
+      [formGroup]="profileForm"
+      (ngSubmit)="onSubmit()"
+      *ngIf="profileForm"
+    >
+      <div class="formgrid grid">
+        <div class="field col">
+          <label for="firstName">NAME</label>
+          <input
+            id="firstName"
+            name="firstName"
+            formControlName="firstName"
+            type="text"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+          />
+        </div>
+        <div class="field col">
+          <label for="lastName">LAST NAME</label>
+          <input
+            id="lastName"
+            name="lastName"
+            formControlName="lastName"
+            type="text"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+          />
+        </div>
+      </div>
+
+      <h2>CHANGE PASSWORD</h2>
+      <br />
+      <div class="formgrid grid">
+        <div class="field col">
+          <label for="password">NEW PASSWORD</label>
+          <input
+            id="password"
+            name="password"
+            formControlName="password"
+            type="password"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+          />
+        </div>
+        <div class="field col">
+          <label for="rePassword">RE-TYPE NEW PASSWORD</label>
+          <input
+            id="rePassword"
+            type="password"
+            name="rePassword"
+            formControlName="rePassword"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+          />
+        </div>
+      </div>
+      <br />
+
+      <div>
+        <span class="error-text" *ngIf="errorUpdate">
+          New password is invalid.
+        </span>
+      </div>
+      <div
+        *ngIf="
+          (profileForm.get('password')?.dirty ||
+            profileForm.get('password')?.touched) &&
+          (profileForm.get('rePassword')?.dirty ||
+            profileForm.get('rePassword')?.touched)
+        "
+      >
+        <span class="error-text" *ngIf="profileForm.hasError('notMatched')">
+          Password confirmation is not valid.
+        </span>
+      </div>
+      <div *ngIf="updateSuccessMsg">
+        <span class="success-text">
+          <p-button
+            styleClass="p-button-link"
+            [routerLink]="['/']"
+            label="Update profile success !!! Click here to back home"
+          >
+          </p-button>
+        </span>
+      </div>
+      <br />
+      <br />
+      <div class="btn-group flex justify-content-between">
+        <button
+          pButton
+          type="submit"
+          class="p-button-primary"
+          label="SAVE CHANGES"
+        ></button>
+        <button
+          pButton
+          pRipple
+          (click)="onLogOut()"
+          type="button"
+          label="LOG OUT"
+          class="p-button-raised p-button-secondary"
+        ></button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<p-menubar>
+  <ng-template pTemplate="start"> <h2>Mini Project</h2> </ng-template>
+  <ng-template pTemplate="end">
+    <p-button
+      styleClass="p-button-link text-white"
+      [routerLink]="user ? ['/profile', user.username] : ['/login']"
+      icon="pi pi-user"
+      label="{{
+        user
+          ? user.lastName && user.firstName
+            ? user.firstName + ' ' + user.lastName
+            : user.username
+          : 'Login'
+      }}"
+    >
+    </p-button>
+
+    <span>|</span>
+
+    <p-button
+      *ngIf="user"
+      styleClass="p-button-link text-white"
+      (click)="onLogOut()"
+      label="Log Out"
+    >
+    </p-button>
+
+    <p-button
+      *ngIf="!user"
+      styleClass="p-button-link text-white"
+      [routerLink]="['/register']"
+      label="Sign Up"
+    >
+    </p-button>
+  </ng-template>
+</p-menubar>
+
+<br />
+<br />
+
+<h1>Welcome to Angular</h1>

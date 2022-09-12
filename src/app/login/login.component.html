@@ -1,0 +1,94 @@
+<p-button styleClass="p-button-link" [routerLink]="['/']" label="Back Home">
+</p-button>
+
+<div class="grid h-screen justify-content-center align-items-center">
+  <div class="col-4">
+    <h1>Login Form</h1>
+    <form
+      class="card form-login"
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <br />
+      <div class="field">
+        <label for="username1">USERNAME</label>
+        <input
+          id="username1"
+          type="text"
+          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+          placeholder="Enter username"
+          name="username"
+          formControlName="username"
+        />
+      </div>
+      <div class="field">
+        <label for="password1">PASSWORD</label>
+        <input
+          id="password1"
+          type="password"
+          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+          placeholder="Enter password"
+          name="password"
+          formControlName="password"
+        />
+      </div>
+      <div class="flex justify-content-between align-items-center">
+        <div class="flex align-items-center">
+          <input
+            type="checkbox"
+            value="rememberMe"
+            formControlName="rememberMe"
+            id="rememberMe"
+          />
+          <label for="rememberMe">Remember me</label>
+        </div>
+
+        <button
+          pButton
+          type="submit"
+          class="p-button-success"
+          label="LOGIN"
+        ></button>
+      </div>
+    </form>
+    <br />
+    <br />
+    <span *ngIf="errorLogin" class="error-text">
+      {{ errorLogin.error.message }}</span
+    >
+    <div
+      *ngIf="
+        loginForm.get('username')?.invalid &&
+        (loginForm.get('username')?.dirty || loginForm.get('username')?.touched)
+      "
+    >
+      <span
+        class="error-text"
+        *ngIf="loginForm.get('username')?.hasError('required')"
+      >
+        User name must not be blank
+      </span>
+    </div>
+
+    <div
+      *ngIf="
+        loginForm.get('password')?.invalid &&
+        (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)
+      "
+    >
+      <span
+        class="error-text"
+        *ngIf="loginForm.get('password')?.hasError('required')"
+      >
+        Password must not be blank
+      </span>
+
+      <span
+        class="error-text"
+        *ngIf="loginForm.get('password')?.hasError('minlength')"
+      >
+        Password length must >= 6 character
+      </span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+.user-avatar {
+  
+  height:50%;
+  border-radius: 50%;
+  
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.name {
+  font-size:2rem;
+  font-weight:bold;
+}
+
+label {
+  font-weight: bold;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.formgrid {
+  padding: 40px;
+  background-color: #ecf3fb;
+}
+
+:host ::ng-deep .p-password input {
+  width: 15rem;
+}
+
+input[type="text"],
+input[type="password"] {
+  height: 80px;
+  font-size: 20px !important;
+}

@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;700&display=swap");
+
+:root {
+  --header-color: #2b74e4;
+  --btn-form-color: #1ed294;
+  --form-login-bg-color: #3b5bcb;
+  --form-register-bg-color: #ecf3fb;
+}
+
+body {
+  font-family: "Pacifico", cursive;
+  font-family: "Quicksand", sans-serif;
+}
+
+.error-text {
+  color: red;
+  font-weight: bold;
+}
+
+.success-text {
+  color: greenyellow;
+  font-weight: bold;
+}

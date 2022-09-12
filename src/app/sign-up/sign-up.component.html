@@ -1,0 +1,149 @@
+<p-button styleClass="p-button-link" [routerLink]="['/']" label="Back Home">
+</p-button>
+
+<div class="grid h-screen justify-content-center align-items-center">
+  <div class="col-4">
+    <h1>SignUp Form</h1>
+    <form
+      class="card form-signup"
+      [formGroup]="signUpForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <br />
+      <div class="formgrid grid">
+        <div class="field col">
+          <label for="username">USERNAME</label>
+          <input
+            id="username"
+            name="username"
+            formControlName="username"
+            type="text"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+          />
+        </div>
+        <div class="field col">
+          <label for="email">E-MAIL</label>
+          <input
+            id="email"
+            name="email"
+            formControlName="email"
+            type="text"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+          />
+        </div>
+      </div>
+      <div class="formgrid grid">
+        <div class="field col">
+          <label for="password">PASSWORD</label>
+          <input
+            id="password"
+            type="password"
+            name="password"
+            formControlName="password"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+          />
+        </div>
+        <div class="field col">
+          <label for="rePassword">PASSWORD AGAIN</label>
+          <input
+            id="rePassword"
+            type="password"
+            name="rePassword"
+            formControlName="rePassword"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+          />
+        </div>
+      </div>
+      <div class="flex justify-content-end align-items-center">
+        <button
+          pButton
+          [disabled]="!signUpForm.valid"
+          type="submit"
+          class="p-button-success"
+          label="Sign Up"
+        ></button>
+      </div>
+    </form>
+    <br />
+    <div
+      *ngIf="
+        signUpForm.get('username')?.invalid &&
+        (signUpForm.get('username')?.dirty ||
+          signUpForm.get('username')?.touched)
+      "
+    >
+      <span
+        class="error-text"
+        *ngIf="signUpForm.get('username')?.hasError('required')"
+      >
+        UserName must not be blank
+      </span>
+    </div>
+
+    <div
+      *ngIf="
+        signUpForm.get('email')?.invalid &&
+        (signUpForm.get('email')?.dirty || signUpForm.get('email')?.touched)
+      "
+    >
+      <span
+        class="error-text"
+        *ngIf="signUpForm.get('email')?.hasError('email')"
+      >
+        Format email is invalid
+      </span>
+    </div>
+
+    <div
+      *ngIf="
+        signUpForm.get('password')?.invalid &&
+        (signUpForm.get('password')?.dirty ||
+          signUpForm.get('password')?.touched)
+      "
+    >
+      <span
+        class="error-text"
+        *ngIf="signUpForm.get('password')?.hasError('required')"
+      >
+        Password must not be blank
+      </span>
+
+      <span
+        class="error-text"
+        *ngIf="signUpForm.get('password')?.hasError('pattern')"
+      >
+        Password must be > 6 characters and contain '@' symbol
+      </span>
+    </div>
+
+    <div
+      *ngIf="
+        (signUpForm.get('password')?.dirty ||
+          signUpForm.get('password')?.touched) &&
+        (signUpForm.get('rePassword')?.dirty ||
+          signUpForm.get('rePassword')?.touched)
+      "
+    >
+      <span class="error-text" *ngIf="signUpForm.hasError('notMatched')">
+        Password confirmation is not valid.
+      </span>
+    </div>
+
+    <div>
+      <span class="error-text" *ngIf="errorSignUp">
+        {{ errorSignUp.error.message }}
+      </span>
+    </div>
+
+    <div *ngIf="signUpSuccessMsg">
+      <span class="success-text">
+        <p-button
+          styleClass="p-button-link"
+          [routerLink]="['/login']"
+          label="Sign Up Success !!! Click here to login"
+        >
+        </p-button>
+      </span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+h1 {
+  text-align: center;
+  font-size: 4rem;
+}
+
+::ng-deep .p-menubar {
+  background-color: var(--header-color);
+  color: white;
+  
+}
+
+::ng-deep .p-menubar-end{
+  display: flex;
+  align-items: center;
+}
